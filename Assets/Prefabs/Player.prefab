@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 68072678951556425}
   - component: {fileID: -4273459996427897246}
   - component: {fileID: 531365125464801086}
+  - component: {fileID: 2594123149980341926}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -380,7 +381,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.3
+  m_Height: 3
   m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -463,6 +464,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c1024f8bbee0b4699d4c2ce5404ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2594123149980341926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68072678951556422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c9647dc784a46bca664910f182491e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
+  CanCommitToTransform: 0
 --- !u!1 &68072679061859783
 GameObject:
   m_ObjectHideFlags: 0
