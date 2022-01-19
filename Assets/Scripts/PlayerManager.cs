@@ -15,30 +15,30 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
-
-            // Start is called before the first frame update
     void Start()
     {
-        if (IsServer || IsHost)
+        NetworkManager.Singleton.OnClientConnectedCallback += (id) =>
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += (id) =>
+            if (IsServer)
             {
-
                 Debug.Log($"{id} just connected...");
                 playersInGame.Value++;
                 Debug.Log("Total Players : " + playersInGame.Value);
+            }
 
-            };
 
-            NetworkManager.Singleton.OnClientDisconnectCallback += (id) =>
+        };
+
+        NetworkManager.Singleton.OnClientDisconnectCallback += (id) =>
+        {
+            if (IsServer)
             {
                 Debug.Log($"{id} just disconnected...");
                 playersInGame.Value--;
                 Debug.Log("Total Players : " + playersInGame.Value);
-            };
-        }
+            }
 
-
-    }
+        };
+     }
 
 }

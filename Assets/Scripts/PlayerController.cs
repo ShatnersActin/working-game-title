@@ -25,9 +25,6 @@ public class PlayerController : NetworkBehaviour
     private float movementX;
     private float movementY;
 
-    //[SerializeField]
-    //private NetworkVariable<PlayerState> networkPlayerState = new NetworkVariable<PlayerState>();
-
     private void Awake()
     {
 
