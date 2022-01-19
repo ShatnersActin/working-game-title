@@ -17,9 +17,9 @@ public class UIManager : MonoBehaviour
     private Button startClientButton;
 
     [SerializeField]
-    private TextMeshProUGUI playerInGameText;
+    //private TextMeshProUGUI playerInGameText;
 
-    private int numberOfPlayers;
+    //private int numberOfPlayers;
 
     private void Awake()
     {
@@ -54,26 +54,14 @@ public class UIManager : MonoBehaviour
 
         startClientButton.onClick.AddListener(() =>
         {
-            if (NetworkManager.Singleton.StartClient())
-            {
-                Debug.Log("Client Started....");
-            }
-            else
-            {
-                Debug.Log("Client could not be started");
-            }
+            NetworkManager.Singleton.StartClient();
         });
-
-        
-        
-        
-        
     }
 
     private void Update()
     {
-        GameObject playerManager = GameObject.Find("PlayersManager");
-        playerInGameText.text = $"Players in game: " + playerManager.GetComponent<PlayerManager>().playersInGame.Value;
-        //playerInGameText.text = $"Players in game: {PlayerManager.Instance.PlayersInGame}";
+        //GameObject playerManager = GameObject.Find("PlayersManager");
+        //playerInGameText.text = $"Players in game: " + playerManager.GetComponent<PlayerManager>().playersInGame.Value;
+        
     }
 }
