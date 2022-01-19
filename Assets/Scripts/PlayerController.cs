@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
         }
 
-        Debug.Log(isSprinting);
+        //Debug.Log(isSprinting);
     }
 
     void OnMove(InputValue movementValue)
