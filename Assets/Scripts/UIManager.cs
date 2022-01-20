@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+
         Cursor.visible = true;
     }
 
@@ -63,5 +65,10 @@ public class UIManager : MonoBehaviour
         GameObject playerManager = GameObject.Find("PlayersManager");
         playerInGameText.text = $"Players in game: " + playerManager.GetComponent<PlayerManager>().playersInGame.Value;
         
+    }
+
+    public void OnServerStart()
+    {
+ 
     }
 }
