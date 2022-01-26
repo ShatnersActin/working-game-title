@@ -19,13 +19,23 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI playerInGameText;
 
-    //private int numberOfPlayers;
+    [SerializeField]
+    private TextMeshProUGUI playerTargetText;
 
+    [SerializeField]
+    private GameObject playerManager;
+
+    [SerializeField]
+    private GameObject player;
+  
     private void Awake()
     {
         Application.targetFrameRate = 60;
 
         Cursor.visible = true;
+        playerManager = GameObject.Find("PlayersManager");
+        
+
     }
 
     private void Start()
@@ -62,9 +72,23 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        GameObject playerManager = GameObject.Find("PlayersManager");
-        playerInGameText.text = $"Players in game: " + playerManager.GetComponent<PlayerManager>().playersInGame.Value;
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (playerManager != null)
+        {
+            playerInGameText.text = $"Players in game: " + playerManager.GetComponent<PlayerManager>().playersInGame.Value;
+        }
+
+        if (player != null)
+        {
+            if (player.GetComponent<PlayerController>().hasTarget == true)
+            {
+                playerTargetText.text = $"Target : " + player.GetComponent<PlayerController>().target.name;
+            }
+            else
+            {
+                playerTargetText.text = $"No Target";
+            }
+        }  
     }
 
     public void OnServerStart()

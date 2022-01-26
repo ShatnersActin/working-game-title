@@ -18,9 +18,12 @@ public class PlayerController : NetworkBehaviour
     private float turnSmoothVelocity;
     private float gravity;
     private bool isSprinting = false;
+    public bool hasTarget;
 
     public CharacterController controller;
     public Transform cam;
+    public GameObject target;
+    public float targetRange;
    
     private float movementX;
     private float movementY;
@@ -80,6 +83,12 @@ public class PlayerController : NetworkBehaviour
             {
                 isSprinting = false;
             }
+
+            if (FindClosestEnemy() == null)
+            {
+                hasTarget = false;
+                target = null;
+            }
         }
 
     }
@@ -111,6 +120,44 @@ public class PlayerController : NetworkBehaviour
             isSprinting = true;
         }
         
+    }
+
+    void OnClosestTarget()
+    {
+        if(FindClosestEnemy() != null)
+        {
+            hasTarget = true;
+            target = FindClosestEnemy();
+            Debug.Log("Target Found = " + target.name);
+        }
+    }
+
+    public GameObject FindClosestEnemy()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closest = null;
+        //float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        float distance = targetRange * targetRange;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        float radius = targetRange;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
 }
