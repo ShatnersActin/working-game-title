@@ -10,6 +10,8 @@ public class PlayerHUD : NetworkBehaviour
     private NetworkVariable<NetworkString> playerName = new NetworkVariable<NetworkString>();
 
     private bool overlaySet = false;
+    [SerializeField]
+    private TextMeshProUGUI playerTargetText;
 
     public override void OnNetworkSpawn()
     {
@@ -26,6 +28,19 @@ public class PlayerHUD : NetworkBehaviour
         localPlayerOverlay.text = playerName.Value;
     }
 
+    public void SetTarget()
+    {
+        if (gameObject.GetComponent<TargetManager>().hasTarget == true)
+        {    
+            playerTargetText.text = gameObject.GetComponent<TargetManager>().target.name;
+        }
+        else
+        {
+            playerTargetText.text = $"No Target";
+        }
+
+    }
+
     private void Update()
     {
         if(!overlaySet && !string.IsNullOrEmpty(playerName.Value))
@@ -33,6 +48,11 @@ public class PlayerHUD : NetworkBehaviour
             SetOverlay();
             overlaySet = true;
         }
+        if(IsClient && IsOwner)
+        {
+            SetTarget();
+        }
+        
     }
 }
 

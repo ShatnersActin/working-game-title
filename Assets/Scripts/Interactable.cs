@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interact : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
+
+    private void Start()
+    {
+        
+    }
 
     private void OnDrawGizmosSelected ()
     {
