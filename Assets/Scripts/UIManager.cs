@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.Netcode;
 
-public class UIManager : MonoBehaviour
+public class UIManager : NetworkBehaviour
 {
     [SerializeField]
     private Button startServerButton;
@@ -19,13 +19,26 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI playerInGameText;
 
-    //private int numberOfPlayers;
+    [SerializeField]
+    private TextMeshProUGUI playerTargetText;
 
+    [SerializeField]
+    private Button addOneStrButton;
+
+    [SerializeField]
+    private GameObject playerManager;
+
+    [SerializeField]
+    private GameObject player;
+  
     private void Awake()
     {
         Application.targetFrameRate = 60;
 
         Cursor.visible = true;
+        playerManager = GameObject.Find("PlayersManager");
+        
+
     }
 
     private void Start()
@@ -62,9 +75,13 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        GameObject playerManager = GameObject.Find("PlayersManager");
-        playerInGameText.text = $"Players in game: " + playerManager.GetComponent<PlayerManager>().playersInGame.Value;
+        //GameObject player = GameObject.FindGameObjectWithTag("Targetable");
         
+
+        if (playerManager != null)
+        {
+            playerInGameText.text = $"Players in game: " + playerManager.GetComponent<PlayerManager>().playersInGame.Value;
+        }
     }
 
     public void OnServerStart()

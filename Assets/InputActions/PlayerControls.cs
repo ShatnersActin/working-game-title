@@ -71,6 +71,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClosestTarget"",
+                    ""type"": ""Button"",
+                    ""id"": ""177138d8-eb65-45ae-963a-7320e2a80ba0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextTarget"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5237398-6258-4838-98f8-595025a29c15"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -308,7 +326,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2ec8358e-0e35-4257-ac99-e86544dca773"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -335,6 +353,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""144f3ea9-97e8-418e-8dd3-505d34f3f19d"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ClosestTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""522571d1-2210-45f0-9437-fb2cbbc5a87c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ClosestTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fec0a43-e773-4517-8172-769246ed378f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -927,6 +978,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_ClosestTarget = m_Player.FindAction("ClosestTarget", throwIfNotFound: true);
+        m_Player_NextTarget = m_Player.FindAction("NextTarget", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1003,6 +1056,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_ClosestTarget;
+    private readonly InputAction m_Player_NextTarget;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1012,6 +1067,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @ClosestTarget => m_Wrapper.m_Player_ClosestTarget;
+        public InputAction @NextTarget => m_Wrapper.m_Player_NextTarget;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1036,6 +1093,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @ClosestTarget.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClosestTarget;
+                @ClosestTarget.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClosestTarget;
+                @ClosestTarget.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClosestTarget;
+                @NextTarget.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextTarget;
+                @NextTarget.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextTarget;
+                @NextTarget.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextTarget;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1055,6 +1118,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @ClosestTarget.started += instance.OnClosestTarget;
+                @ClosestTarget.performed += instance.OnClosestTarget;
+                @ClosestTarget.canceled += instance.OnClosestTarget;
+                @NextTarget.started += instance.OnNextTarget;
+                @NextTarget.performed += instance.OnNextTarget;
+                @NextTarget.canceled += instance.OnNextTarget;
             }
         }
     }
@@ -1216,6 +1285,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnClosestTarget(InputAction.CallbackContext context);
+        void OnNextTarget(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
