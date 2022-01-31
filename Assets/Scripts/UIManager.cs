@@ -23,6 +23,9 @@ public class UIManager : NetworkBehaviour
     private TextMeshProUGUI playerTargetText;
 
     [SerializeField]
+    private Button addOneStrButton;
+
+    [SerializeField]
     private GameObject playerManager;
 
     [SerializeField]

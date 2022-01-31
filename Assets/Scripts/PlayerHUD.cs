@@ -12,6 +12,11 @@ public class PlayerHUD : NetworkBehaviour
     private bool overlaySet = false;
     [SerializeField]
     private TextMeshProUGUI playerTargetText;
+    [SerializeField]
+    private TextMeshProUGUI statSheetText;
+    [SerializeField]
+    private Button addCon;
+    //public Camera worldCamera;
 
     public override void OnNetworkSpawn()
     {
@@ -41,6 +46,13 @@ public class PlayerHUD : NetworkBehaviour
 
     }
 
+    public void SetPlayerStats()
+    {
+        statSheetText.text = "Con: " + gameObject.GetComponent<ClientPlayerStats>().playerCon.Value;
+    }
+
+
+
     private void Update()
     {
         if(!overlaySet && !string.IsNullOrEmpty(playerName.Value))
@@ -52,7 +64,11 @@ public class PlayerHUD : NetworkBehaviour
         {
             SetTarget();
         }
-        
+        if (IsClient && IsOwner)
+        {
+            SetPlayerStats();
+        }
+
     }
 }
 
