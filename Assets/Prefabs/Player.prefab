@@ -526,10 +526,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce51495dcb14ffd48a62f2197e0986e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStr:
+    m_InternalValue: 0
+  playerDex:
+    m_InternalValue: 0
   playerCon:
+    m_InternalValue: 0
+  playerInt:
     m_InternalValue: 0
   playerHealth:
     m_InternalValue: 0
+  playerMaxHealth:
+    m_InternalValue: 0
+  baseHealth: 20
+  conBonusHealth: 0
 --- !u!114 &-3962665432696733370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,8 +1196,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -3962665432696733370}
-        m_TargetAssemblyTypeName: NetworkPlayerHealth, Assembly-CSharp
-        m_MethodName: AddPlayerCon
+        m_TargetAssemblyTypeName: NetworkPlayerStats, Assembly-CSharp
+        m_MethodName: UpdatePlayerCon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
