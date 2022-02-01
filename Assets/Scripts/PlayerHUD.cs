@@ -48,7 +48,8 @@ public class PlayerHUD : NetworkBehaviour
 
     public void SetPlayerStats()
     {
-        statSheetText.text = "Con: " + gameObject.GetComponent<ClientPlayerStats>().playerCon.Value;
+        statSheetText.text = "Con: " + gameObject.GetComponent<ClientPlayerStats>().playerCon.Value + "\n" +
+            "HP: " + gameObject.GetComponent<NetworkHealth>().playerCurrentHealth.Value;
     }
 
 
