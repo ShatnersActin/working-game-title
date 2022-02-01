@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 292838250211808855}
   - component: {fileID: -6610426987120804264}
   - component: {fileID: -3962665432696733370}
+  - component: {fileID: 4504238018938347169}
   m_Layer: 0
   m_Name: Player
   m_TagString: Targetable
@@ -534,12 +535,6 @@ MonoBehaviour:
     m_InternalValue: 0
   playerInt:
     m_InternalValue: 0
-  playerHealth:
-    m_InternalValue: 0
-  playerMaxHealth:
-    m_InternalValue: 0
-  baseHealth: 20
-  conBonusHealth: 0
 --- !u!114 &-3962665432696733370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +547,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80dffb6f64f157488b1266d5dc9eaf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4504238018938347169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68072678951556422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73526cfb205bfcd4392615a34d9dae93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCurrentHealth:
+    m_InternalValue: 0
+  playerMaxHealth:
+    m_InternalValue: 0
 --- !u!1 &68072679061859783
 GameObject:
   m_ObjectHideFlags: 0
