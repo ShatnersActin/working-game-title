@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Weapon", menuName = "Inventory/Weapon")]
+[CreateAssetMenu]
 public class Item : ScriptableObject
 {
-    public string weaponName = "New Weapon";
-    public Sprite icon = null;
-    public bool isDefaultWeapon = false;
-
+    new public string name = "New Item";
+    public Sprite icon;
 
 }
+
