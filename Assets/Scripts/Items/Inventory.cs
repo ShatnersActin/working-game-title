@@ -1,38 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public delegate void OnInvetoryChanged();
-    public OnInvetoryChanged onInvetoryChangedCallback;
+    public static Inventory instance;
 
-    public int space = 60;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public List<Item> items = new List<Item>();
 
-    public bool Add (Item item)
+    public int space;
+
+    public delegate void OnItemChanged();
+    public OnItemChanged onItemChangedCallback;
+
+    public bool AddItem(Item item)
     {
-        if (items.Count >= space)
+        if(items.Count >= space)
         {
             Debug.Log("Inventory Full");
             return false;
         }
+
         items.Add(item);
-        if (onInvetoryChangedCallback != null)
+
+        if (onItemChangedCallback != null)
         {
-            onInvetoryChangedCallback.Invoke();
+            onItemChangedCallback.Invoke();
         }
         return true;
+
     }
 
-    public void Remove (Item item)
+    public void RemoveItem(Item item)
     {
         items.Remove(item);
-        if (onInvetoryChangedCallback != null)
+
+        if (onItemChangedCallback != null)
         {
-            onInvetoryChangedCallback.Invoke();
+            onItemChangedCallback.Invoke();
         }
     }
-    
 }

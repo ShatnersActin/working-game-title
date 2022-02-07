@@ -16,7 +16,8 @@ public class PlayerHUD : NetworkBehaviour
     private TextMeshProUGUI statSheetText;
     [SerializeField]
     private Button addCon;
-    //public Camera worldCamera;
+    [SerializeField]
+    private GameObject inventory;
 
     public override void OnNetworkSpawn()
     {
@@ -52,6 +53,23 @@ public class PlayerHUD : NetworkBehaviour
             "HP: " + gameObject.GetComponent<NetworkHealth>().playerCurrentHealth.Value;
     }
 
+    public void UpdateInventoryUI()
+    {
+        Debug.Log("Updating UI");
+    }
+
+    void OnOpenInventory()
+    {
+        if (inventory.activeInHierarchy == false)
+        {
+            inventory.SetActive(true);
+        }
+        else
+        {
+            inventory.SetActive(false);
+        }
+        
+    }
 
 
     private void Update()
