@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class ManageInventory : MonoBehaviour
 {
+    #region Singleton
+    public static ManageInventory instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
     public Item item;
     private Inventory inventory;
 
