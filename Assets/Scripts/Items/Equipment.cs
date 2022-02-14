@@ -45,57 +45,70 @@ public class Equipment : Item
             Debug.Log("Common Item, no Bonus");
             return;
         }
-        if(rarityIndex == 1)
+        if (rarityIndex == 1)
         {
             Debug.Log("Uncommon Item, one bonus");
+            RandomStatRoll();
+            return;
+        }
+        if(rarityIndex == 2)
+        {
+            Debug.Log("Rare Item, two bonuses");
+            RandomStatRoll();
+            RandomStatRoll();
+            return;
+
+        }
+        if(rarityIndex == 3)
+        {
+            Debug.Log("Very Rare Item, three bonuses");
+            RandomStatRoll();
+            RandomStatRoll();
+            RandomStatRoll();
+            return;
+
+        }
+
+
+        void RandomStatRoll()
+        {
             int randomStat = (int)Random.Range(0.0f, maxStatsIndex);
             statsIndex = randomStat;
             Debug.Log("Randoms Stat Index = " + statsIndex);
 
-
-            if(statsIndex == 0)         //Str Roll
+            if (statsIndex == 0)         //Str Roll
             {
                 int randomStatValue = (int)Random.Range(1.0f, 3.0f);
                 bonusStr = randomStatValue;
                 Debug.Log("Item awarded " + bonusStr + " Bonus Strength!");
                 //update Str
             }
-            if(statsIndex == 1)         //Dex Roll
+            if (statsIndex == 1)         //Dex Roll
             {
                 int randomStatValue = (int)Random.Range(1.0f, 3.0f);
                 bonusDex = randomStatValue;
                 Debug.Log("Item awarded " + bonusDex + " Bonus Dexterity!");
                 //update Dex
             }
-            if(statsIndex == 2)         //Con Roll
+            if (statsIndex == 2)         //Con Roll
             {
                 int randomStatValue = (int)Random.Range(1.0f, 3.0f);
                 bonusCon = randomStatValue;
                 Debug.Log("Item awarded " + bonusCon + " Bonus Constitution!");
                 //update Con
             }
-            if(statsIndex == 3)         //Int Roll
+            if (statsIndex == 3)         //Int Roll
             {
                 int randomStatValue = (int)Random.Range(1.0f, 3.0f);
                 bonusInt = randomStatValue;
                 Debug.Log("Item awarded " + bonusInt + " Bonus Intelligence!");
                 //update Int
             }
-
-
-            return;
-        }
-        if(rarityIndex == 2)
-        {
-            Debug.Log("Rare Item, two bonuses");
-            return;
-        }
-        if(rarityIndex == 3)
-        {
-            Debug.Log("Very Rare Item, three bonuses");
-            return;
         }
     }
+
+
+
 
     public enum EquipmentSlot
     {

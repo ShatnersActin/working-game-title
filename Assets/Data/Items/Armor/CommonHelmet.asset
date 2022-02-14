@@ -16,7 +16,7 @@ MonoBehaviour:
   name: Common Helmet
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   equipSlot: 0
-  itemRarity: 1
+  itemRarity: 2
   stats: 0
   bonusStr: 0
   bonusDex: 0
