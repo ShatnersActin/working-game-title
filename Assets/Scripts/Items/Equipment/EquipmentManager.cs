@@ -12,11 +12,14 @@ public class EquipmentManager : MonoBehaviour
     }
     #endregion
 
-    Equipment[] currentEquipment;
+    public Equipment[] currentEquipment;
     Inventory inventory;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged OnEquipmentChangedCallback;
+
+    public delegate void OnEquip();
+    public OnEquip OnEquipCallback;
 
     private void Start()
     {
@@ -44,6 +47,7 @@ public class EquipmentManager : MonoBehaviour
         }
 
         currentEquipment[slotIndex] = newItem;
+        OnEquipCallback.Invoke();
     }
 
     public void Unequip(int slotIndex)
@@ -56,10 +60,11 @@ public class EquipmentManager : MonoBehaviour
             //Send Event when Equipment is changed
             if (OnEquipmentChangedCallback != null)
             {
-                OnEquipmentChangedCallback.Invoke(null, oldItem);
+                OnEquipmentChangedCallback.Invoke(null, oldItem);   
             }
 
             currentEquipment[slotIndex] = null;
+            OnEquipCallback.Invoke();
         }
     }
 

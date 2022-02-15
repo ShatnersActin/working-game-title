@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DropLoot : MonoBehaviour
 {
     Inventory inventory;
-    public Equipment itemDrop;
+    Database database;
+    Equipment itemDrop;
+
 
     public void GenerateLoot()
     {
         inventory = Inventory.instance;
+        database = Database.instance;
+        itemDrop = (Equipment)database.GetRandomItem();
         Equipment itemCopy = (Equipment)itemDrop.GetCopy();
         Debug.Log("Generated Loot = " + itemCopy.name);
         itemCopy.GenerateStats();

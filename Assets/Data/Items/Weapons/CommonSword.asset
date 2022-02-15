@@ -9,16 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b88375ab621114d98dfc88235bbe42, type: 3}
-  m_Name: CommonHelmet
+  m_Script: {fileID: 11500000, guid: 12bf6ebadbff5c24e95589e1e9ce8872, type: 3}
+  m_Name: CommonSword
   m_EditorClassIdentifier: 
   id: 0
-  name: Common Helmet
+  name: Common Sword and Shield
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  equipSlot: 0
+  equipSlot: 4
   itemRarity: 0
   stats: 0
   bonusStr: 0
   bonusDex: 0
   bonusCon: 0
   bonusInt: 0
+  weaponSpeed: 2
+  weaponRange: 5
+  weaponDamage: 6
