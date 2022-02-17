@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class DropLoot : MonoBehaviour
+public class DropLoot : NetworkBehaviour
 {
     Inventory inventory;
     Database database;
@@ -9,13 +10,14 @@ public class DropLoot : MonoBehaviour
 
     public void GenerateLoot()
     {
-        inventory = Inventory.instance;
+        inventory = gameObject.GetComponentInParent<Inventory>();
         database = Database.instance;
         itemDrop = (Equipment)database.GetRandomItem();
         Equipment itemCopy = (Equipment)itemDrop.GetCopy();
         Debug.Log("Generated Loot = " + itemCopy.name);
         itemCopy.GenerateStats();
         inventory.AddItem(itemCopy);
+        
     }
 
 }

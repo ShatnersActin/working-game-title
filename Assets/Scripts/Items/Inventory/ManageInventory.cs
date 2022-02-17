@@ -23,13 +23,13 @@ public class ManageInventory : MonoBehaviour
 
     public void AddItemToInventory()
     {
-        inventory = Inventory.instance;
+        inventory = gameObject.GetComponent<Inventory>();
         inventory.AddItem(item);
     }
 
     public void RemoveItemFromInventory()
     {
-        inventory = Inventory.instance;
+        inventory = gameObject.GetComponent<Inventory>();
         inventory.RemoveItem(item);
     }
 

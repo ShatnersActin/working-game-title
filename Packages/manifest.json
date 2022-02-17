@@ -10,6 +10,7 @@
     "com.unity.multiplayer.tools": "1.0.0-pre.2",
     "com.unity.netcode.gameobjects": "1.0.0-pre.4",
     "com.unity.render-pipelines.high-definition": "10.8.1",
+    "com.unity.render-pipelines.universal": "10.8.1",
     "com.unity.test-framework": "1.1.30",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.4.8",

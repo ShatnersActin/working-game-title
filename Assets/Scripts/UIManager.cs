@@ -75,9 +75,7 @@ public class UIManager : NetworkBehaviour
 
     private void Update()
     {
-        //GameObject player = GameObject.FindGameObjectWithTag("Targetable");
-        
-
+    
         if (playerManager != null)
         {
             playerInGameText.text = $"Players in game: " + playerManager.GetComponent<PlayerManager>().playersInGame.Value;

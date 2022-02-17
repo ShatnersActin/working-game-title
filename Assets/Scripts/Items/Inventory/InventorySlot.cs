@@ -1,13 +1,21 @@
 
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : NetworkBehaviour
 {
     public Image icon;
     public Button removeButton;
     Item item;
-    
+    EquipmentManager equipmentManager;
+    Inventory inventory;
+
+    public void Awake()
+    {
+        inventory = gameObject.GetComponentInParent<Inventory>();
+        equipmentManager = gameObject.GetComponentInParent<EquipmentManager>();
+    }
 
     public void AddItemUI(Item newItem)
     {
@@ -27,15 +35,16 @@ public class InventorySlot : MonoBehaviour
 
     public void OnRemoveButton()
     {
-        Inventory.instance.RemoveItem(item);
+        gameObject.GetComponentInParent<Inventory>().RemoveItem(item);
     }
 
     public void UseItem()
     {
-        if(item != null)
+        if (item != null)
         {
-            item.UseItem();
+            //item.UseItem();
+            equipmentManager.Equip((Equipment)item);
+            inventory.RemoveItem(item);
         }
-
     }
 }

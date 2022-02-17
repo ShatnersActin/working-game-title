@@ -22,12 +22,6 @@ public class Item : ScriptableObject
     {
         
     }
-
-    public void RemoveFromInventory()
-    {
-        Inventory.instance.RemoveItem(this);
-    }
-
 }
 
 

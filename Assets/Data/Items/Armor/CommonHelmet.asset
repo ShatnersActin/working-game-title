@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   name: Common Helmet
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: ab7fad69d9e1ff34a8695e4bfd395041, type: 3}
   equipSlot: 0
   itemRarity: 0
   stats: 0

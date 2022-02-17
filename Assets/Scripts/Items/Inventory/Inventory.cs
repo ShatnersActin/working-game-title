@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Unity.Netcode;
 
-public class Inventory : MonoBehaviour
+public class Inventory : NetworkBehaviour
 {
-    public static Inventory instance;
+   /* public static Inventory instance;
 
     private void Awake()
     {
-        instance = this;
+        if(IsOwner && IsClient)
+        {
+            instance = this;
+        }
+        
     }
-
+   */
     public List<Item> items = new List<Item>();
 
     public int space;

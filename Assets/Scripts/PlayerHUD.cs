@@ -18,6 +18,8 @@ public class PlayerHUD : NetworkBehaviour
     private Button addCon;
     [SerializeField]
     private GameObject inventory;
+    [SerializeField]
+    private GameObject equipment;
 
     public override void OnNetworkSpawn()
     {
@@ -60,15 +62,32 @@ public class PlayerHUD : NetworkBehaviour
 
     void OnOpenInventory()
     {
-        if (inventory.activeInHierarchy == false)
+        if(IsClient && IsOwner)
         {
-            inventory.SetActive(true);
+            if (inventory.activeInHierarchy == false)
+            {
+                inventory.SetActive(true);
+            }
+            else
+            {
+                inventory.SetActive(false);
+            }
         }
-        else
+    }
+
+    void OnOpenEquipment()
+    {
+        if(IsClient && IsOwner)
         {
-            inventory.SetActive(false);
+            if (equipment.activeInHierarchy == false)
+            {
+                equipment.SetActive(true);
+            }
+            else
+            {
+                equipment.SetActive(false);
+            }
         }
-        
     }
 
 

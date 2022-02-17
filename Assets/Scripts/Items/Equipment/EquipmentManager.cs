@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class EquipmentManager : MonoBehaviour
+public class EquipmentManager : NetworkBehaviour
 {
+    
     #region Singleton
     public static EquipmentManager instance;
     private void Awake()
@@ -23,49 +25,57 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
-        inventory = Inventory.instance;
+        inventory = gameObject.GetComponent<Inventory>();
         int numSlots =  System.Enum.GetNames(typeof(Equipment.EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlots];
     }
 
     public void Equip(Equipment newItem)
     {
-        int slotIndex = (int)newItem.equipSlot;
-
-        Equipment oldItem = null;
-
-        if(currentEquipment[slotIndex] != null)
+        if(IsClient && IsOwner)
         {
-            oldItem = currentEquipment[slotIndex];
-            inventory.AddItem(oldItem);
-        }
+            int slotIndex = (int)newItem.equipSlot;
 
-        //Send Event when Equipment is changed
-        if(OnEquipmentChangedCallback != null)
-        {
-            OnEquipmentChangedCallback.Invoke(newItem, oldItem);
-        }
+            Equipment oldItem = null;
 
-        currentEquipment[slotIndex] = newItem;
-        OnEquipCallback.Invoke();
-    }
-
-    public void Unequip(int slotIndex)
-    {
-        if (currentEquipment[slotIndex] != null)
-        {
-            Equipment oldItem = currentEquipment[slotIndex];
-            inventory.AddItem(oldItem);
+            if (currentEquipment[slotIndex] != null)
+            {
+                oldItem = currentEquipment[slotIndex];
+                inventory.AddItem(oldItem);
+            }
 
             //Send Event when Equipment is changed
             if (OnEquipmentChangedCallback != null)
             {
-                OnEquipmentChangedCallback.Invoke(null, oldItem);   
+                OnEquipmentChangedCallback.Invoke(newItem, oldItem);
             }
 
-            currentEquipment[slotIndex] = null;
+            currentEquipment[slotIndex] = newItem;
             OnEquipCallback.Invoke();
         }
+
+    }
+
+    public void Unequip(int slotIndex)
+    {
+        if(IsClient && IsOwner)
+        {
+            if (currentEquipment[slotIndex] != null)
+            {
+                Equipment oldItem = currentEquipment[slotIndex];
+                inventory.AddItem(oldItem);
+
+                //Send Event when Equipment is changed
+                if (OnEquipmentChangedCallback != null)
+                {
+                    OnEquipmentChangedCallback.Invoke(null, oldItem);
+                }
+
+                currentEquipment[slotIndex] = null;
+                OnEquipCallback.Invoke();
+            }
+        }
+
     }
 
     public void UnequipAll()

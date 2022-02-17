@@ -5,16 +5,15 @@ using UnityEngine;
 public class EquipmentUI : MonoBehaviour
 {
     public GameObject itemsParent;
-    Inventory inventory;
+    //Inventory inventory;
     EquipmentManager equipmentManager;
-    Equipment[] uiCurrentEquipment;
     EquipmentSlot[] slots;
 
     // Start is called before the first frame update
     void Start()
     {
-        equipmentManager = EquipmentManager.instance;
-        inventory = Inventory.instance;
+        equipmentManager = GetComponentInParent<EquipmentManager>();
+        //inventory = Inventory.instance;
 
         equipmentManager.OnEquipCallback += UpdateUI;
         slots = itemsParent.GetComponentsInChildren<EquipmentSlot>();
@@ -28,10 +27,6 @@ public class EquipmentUI : MonoBehaviour
             if (i < slots.Length && equipmentManager.currentEquipment[i] != null)
             {
                 slots[i].AddItemUI(equipmentManager.currentEquipment[i]);
-            }
-            else
-            {
-                slots[i].RemoveItemUI();
             }
             
         }
