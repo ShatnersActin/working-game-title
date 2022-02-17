@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b88375ab621114d98dfc88235bbe42, type: 3}
   m_Name: CommonLegs
   m_EditorClassIdentifier: 
-  id: 0
+  id: 104
   name: Common Leggings
   icon: {fileID: 21300000, guid: 64baf02dd8ba7e046bc6a0c7378441aa, type: 3}
   equipSlot: 2

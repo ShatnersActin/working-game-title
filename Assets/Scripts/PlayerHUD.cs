@@ -15,8 +15,6 @@ public class PlayerHUD : NetworkBehaviour
     [SerializeField]
     private TextMeshProUGUI statSheetText;
     [SerializeField]
-    private Button addCon;
-    [SerializeField]
     private GameObject inventory;
     [SerializeField]
     private GameObject equipment;
@@ -51,7 +49,10 @@ public class PlayerHUD : NetworkBehaviour
 
     public void SetPlayerStats()
     {
-        statSheetText.text = "Con: " + gameObject.GetComponent<ClientPlayerStats>().playerCon.Value + "\n" +
+        statSheetText.text = "Str: " + gameObject.GetComponent<ClientPlayerStats>().playerStr.Value + "\n" +
+            "Dex: " + gameObject.GetComponent<ClientPlayerStats>().playerDex.Value + "\n" +
+            "Con: " + gameObject.GetComponent<ClientPlayerStats>().playerCon.Value + "\n" +
+            "Int: " + gameObject.GetComponent<ClientPlayerStats>().playerInt.Value + "\n" +
             "HP: " + gameObject.GetComponent<NetworkHealth>().playerCurrentHealth.Value;
     }
 
