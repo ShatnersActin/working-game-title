@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 805854658}
   - component: {fileID: 805854657}
   - component: {fileID: 805854656}
+  - component: {fileID: 362605318871229758}
   m_Layer: 5
   m_Name: PlayerFollowUI
   m_TagString: Untagged
@@ -100,6 +101,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &362605318871229758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805854654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e38ce83f5bfe4d4cb3cc45a4f29b3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
 --- !u!1 &1190889280
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTargetText: {fileID: 8537792603825967745}
   statSheetText: {fileID: 7346911166374614281}
-  addCon: {fileID: 0}
   inventory: {fileID: 4529570970553329563}
   equipment: {fileID: 9027368458790142295}
 --- !u!114 &292838250211808855
