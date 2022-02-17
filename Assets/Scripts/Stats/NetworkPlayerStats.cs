@@ -15,58 +15,57 @@ public class NetworkPlayerStats : NetworkBehaviour
     //ulong localClientId = NetworkManager.Singleton.LocalClientId;
 
 
-    public void UpdatePlayerStr()
+    public void UpdatePlayerStr(int value)
     {
         if (IsClient)
         {
-            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent<ClientPlayerStats>(out ClientPlayerStats clientPlayerStats))
+            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent(out ClientPlayerStats clientPlayerStats))
             {
                 return;
             }
 
-            clientPlayerStats.UpdateStrServerRpc();
+            clientPlayerStats.UpdateStrServerRpc(value);
         }
 
     }
 
-    public void UpdatePlayerDex()
+    public void UpdatePlayerDex(int value)
     {
         if (IsClient)
         {
-            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent<ClientPlayerStats>(out ClientPlayerStats clientPlayerStats))
+            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent(out ClientPlayerStats clientPlayerStats))
             {
                 return;
             }
 
-            clientPlayerStats.UpdateDexServerRpc();
+            clientPlayerStats.UpdateDexServerRpc(value);
         }
 
     }
 
-    public void UpdatePlayerCon()
+    public void UpdatePlayerCon(int value)
     {
         if (IsClient)
         {
-            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent<ClientPlayerStats>(out ClientPlayerStats clientPlayerStats))
+            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent(out ClientPlayerStats clientPlayerStats))
             {
                 return;
             }
 
-            clientPlayerStats.UpdateConServerRpc();
+            clientPlayerStats.UpdateConServerRpc(value);
         }
 
     }
 
-    public void UpdatePlayerInt()
+    public void UpdatePlayerInt(int value)
     {
         if (IsClient)
         {
-            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent<ClientPlayerStats>(out ClientPlayerStats clientPlayerStats))
+            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent(out ClientPlayerStats clientPlayerStats))
             {
                 return;
             }
-
-            clientPlayerStats.UpdateIntServerRpc();
+            clientPlayerStats.UpdateIntServerRpc(value);
         }
 
     }
@@ -75,7 +74,7 @@ public class NetworkPlayerStats : NetworkBehaviour
     {
         if (IsClient)
         {
-            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent<NetworkHealth>(out NetworkHealth networkHealth))
+            if (!NetworkManager.Singleton.LocalClient.PlayerObject.TryGetComponent(out NetworkHealth networkHealth))
             {
                 return;
             }

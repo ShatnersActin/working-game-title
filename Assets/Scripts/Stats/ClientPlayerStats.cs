@@ -66,7 +66,7 @@ public class ClientPlayerStats : NetworkBehaviour
     {
         if (oldValue != newValue)
         {
-            Debug.Log("playerStr went from " + oldValue + " to " + newValue);
+            Debug.Log("Player " + OwnerClientId + " playerStr went from " + oldValue + " to " + newValue);
         }
     }
 
@@ -74,7 +74,7 @@ public class ClientPlayerStats : NetworkBehaviour
     {
         if (oldValue != newValue)
         {
-            Debug.Log("playerDex went from " + oldValue + " to " + newValue);
+            Debug.Log("Player " + OwnerClientId + "playerDex went from " + oldValue + " to " + newValue);
         }
     }
 
@@ -82,7 +82,7 @@ public class ClientPlayerStats : NetworkBehaviour
     {
         if(oldValue != newValue)
         {
-            Debug.Log("playerCon went from " + oldValue + " to " + newValue);
+            Debug.Log("Player " + OwnerClientId + " playerCon went from " + oldValue + " to " + newValue);
             networkPlayerStats.CalculateMaxHealth();
         }
     }
@@ -91,85 +91,89 @@ public class ClientPlayerStats : NetworkBehaviour
     {
         if (oldValue != newValue)
         {
-            Debug.Log("playerInt went from " + oldValue + " to " + newValue);
+            Debug.Log("Player " + OwnerClientId + " playerInt went from " + oldValue + " to " + newValue);
         }
     }
 
     //Start ServerRPC Call Block
 
     [ServerRpc]
-    public void UpdateStrServerRpc()
+    public void UpdateStrServerRpc(int value)
     {
         //logic to increase or decrease playerStr
-        playerStr.Value = newLocalPlayerStr;
+        Debug.Log("Player " + OwnerClientId + " wants to update Str to " + value);
+        playerStr.Value = value;
     }
 
     [ServerRpc]
-    public void UpdateConServerRpc()
+    public void UpdateConServerRpc(int value)
     {
-        //logic to increase or decrease playerCon.  Test function below
-        playerCon.Value = newLocalPlayerCon;
+        //logic to increase or decrease playerCon.
+        Debug.Log("Player " + OwnerClientId + " wants to update Con to " + value);
+        playerCon.Value = value;
     }
 
     [ServerRpc]
-    public void UpdateDexServerRpc()
+    public void UpdateDexServerRpc(int value)
     {
         //logic to increase or decrease playerDex
-        playerDex.Value = newLocalPlayerDex;
+        Debug.Log("Player " + OwnerClientId + " wants to update Dex to " + value);
+        playerDex.Value = value;
     }
 
     [ServerRpc]
-    public void UpdateIntServerRpc()
+    public void UpdateIntServerRpc(int value)
     {
         //logic to increase or decrease playerInt
-        playerInt.Value = newLocalPlayerInt;
+        Debug.Log("Player " + OwnerClientId + " wants to update Int to " + value);
+        playerInt.Value = value;
     }
 
     void OnEquipmentChanged (Equipment newItem, Equipment oldItem)
     {
         if(oldItem != null)
         {
-            oldLocalPlayerStr = playerStr.Value;
-            strModifier = newItem.bonusStr - oldItem.bonusStr;
-            newLocalPlayerStr = oldLocalPlayerStr + strModifier;
-            networkPlayerStats.UpdatePlayerStr();
+            oldLocalPlayerStr = playerStr.Value;                        //set old value to current value
+            strModifier = newItem.bonusStr - oldItem.bonusStr;          //determine difference in gear bonus
+            newLocalPlayerStr = oldLocalPlayerStr + strModifier;        //calculate new value
+            networkPlayerStats.UpdatePlayerStr(newLocalPlayerStr);      //Send to networkPlayerStats to grab Local Client ID and call the Server
 
             oldLocalPlayerDex = playerDex.Value;
             dexModifier = newItem.bonusDex - oldItem.bonusDex;
             newLocalPlayerDex = oldLocalPlayerDex + dexModifier;
-            networkPlayerStats.UpdatePlayerDex();
+            networkPlayerStats.UpdatePlayerDex(newLocalPlayerDex);
 
             oldLocalPlayerCon = playerCon.Value;
             conModifier = newItem.bonusCon - oldItem.bonusCon;
             newLocalPlayerCon = oldLocalPlayerCon + conModifier;
-            networkPlayerStats.UpdatePlayerCon();
+            networkPlayerStats.UpdatePlayerCon(newLocalPlayerCon);
 
             oldLocalPlayerInt = playerInt.Value;
             intModifier = newItem.bonusInt - oldItem.bonusInt;
             newLocalPlayerInt = oldLocalPlayerInt + intModifier;
-            networkPlayerStats.UpdatePlayerInt();
+            networkPlayerStats.UpdatePlayerInt(newLocalPlayerInt);
         }
         else
         {
             oldLocalPlayerStr = playerStr.Value;
             strModifier = newItem.bonusStr;
             newLocalPlayerStr = oldLocalPlayerStr + strModifier;
-            networkPlayerStats.UpdatePlayerStr();
+            networkPlayerStats.UpdatePlayerStr(newLocalPlayerStr);
 
             oldLocalPlayerDex = playerDex.Value;
             dexModifier = newItem.bonusDex;
             newLocalPlayerDex = oldLocalPlayerDex + dexModifier;
-            networkPlayerStats.UpdatePlayerDex();
+            networkPlayerStats.UpdatePlayerDex(newLocalPlayerDex);
 
             oldLocalPlayerCon = playerCon.Value;
             conModifier = newItem.bonusCon;
             newLocalPlayerCon = oldLocalPlayerCon + conModifier;
-            networkPlayerStats.UpdatePlayerCon();
+            networkPlayerStats.UpdatePlayerCon(newLocalPlayerCon);
 
             oldLocalPlayerInt = playerInt.Value;
             intModifier = newItem.bonusInt;
             newLocalPlayerInt = oldLocalPlayerInt + intModifier;
-            networkPlayerStats.UpdatePlayerInt();
+            networkPlayerStats.UpdatePlayerInt(newLocalPlayerInt);
         }
 
     }
