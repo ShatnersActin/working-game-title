@@ -4,10 +4,11 @@
 public enum WeaponTypeEnum
 {
     //Weapon Types
+    None,
     SwordnShield,
     DblBladedAxe,
     Daggers,
     Bow,
-    Staff,
+    Staff
 
 }

@@ -11,6 +11,9 @@ public class TargetManager : NetworkBehaviour
     public GameObject target;
     public bool hasTarget;
 
+    public delegate void OnTargetChanged();
+    public static event OnTargetChanged onTargetChangedCallback;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +25,13 @@ public class TargetManager : NetworkBehaviour
     {
         if (FindClosestEnemy() == null)
         {
+            if(target != null)
+            {
+                target.GetComponent<Interactable>().OnDeTargeted();
+            }
             hasTarget = false;
             target = null;
+            onTargetChangedCallback?.Invoke();
         }
     }
 
@@ -33,8 +41,11 @@ public class TargetManager : NetworkBehaviour
         {
             if (FindClosestEnemy() != null)
             {
+                onTargetChangedCallback?.Invoke();
+                Transform position = gameObject.GetComponent<Transform>();
                 hasTarget = true;
                 target = FindClosestEnemy();
+                target.GetComponent<Interactable>().OnTargeted(position);
                 Debug.Log("Target Found = " + target.name);
             }
         }
@@ -53,7 +64,6 @@ public class TargetManager : NetworkBehaviour
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Targetable");
         GameObject closest = null;
-        //float distance = Mathf.Infinity;
         Vector3 position = transform.position;
         float distance = targetRange * targetRange;
         float minDistance = minRange * minRange;
