@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1481.7949, g: 1836.0898, b: 2430.9902, a: 1}
+  m_IndirectSpecularColor: {r: 1480.7139, g: 1834.7285, b: 2429.1484, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -327,8 +327,8 @@ MonoBehaviour:
     m_Bias: 0
   m_RecenterToTargetHeading:
     m_enabled: 0
-    m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_WaitTime: 0.25
+    m_RecenteringTime: 0.5
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_BindingMode: 4
@@ -494,22 +494,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6713663682725003048, guid: a0a1a1871231d4a4c80e91bce45b6c96, type: 3}
   m_PrefabInstance: {fileID: 6713663684532815464}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &358222798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358222797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 627669756
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &530063051
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 530063051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 1, z: 15}
+  m_LocalScale: {x: 25, y: 1, z: 25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -849,7 +833,7 @@ MonoBehaviour:
   m_HorizontalDamping: 0
   m_VerticalDamping: 0
   m_ScreenX: 0.5
-  m_ScreenY: 0.55
+  m_ScreenY: 0.6
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
@@ -1523,10 +1507,10 @@ MonoBehaviour:
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 0
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -1547,7 +1531,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480846976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
@@ -1782,7 +1766,7 @@ MonoBehaviour:
   m_HorizontalDamping: 0
   m_VerticalDamping: 0
   m_ScreenX: 0.5
-  m_ScreenY: 0.6
+  m_ScreenY: 0.5
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
@@ -2093,27 +2077,6 @@ Transform:
   m_Father: {fileID: 52436314}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1976275064 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5945309010388685206, guid: 67e7b1d01c6a81b40bc3041299e01edc, type: 3}
-  m_PrefabInstance: {fileID: 5945309009967637605}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1976275065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976275064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2492486089
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &2023288788 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2388876967775254916, guid: d047cbe70217f9048a6c67928fed0d96, type: 3}
@@ -2135,6 +2098,18 @@ PrefabInstance:
     - target: {fileID: 2388876968048371432, guid: d047cbe70217f9048a6c67928fed0d96, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388876968048371434, guid: d047cbe70217f9048a6c67928fed0d96, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388876968048371434, guid: d047cbe70217f9048a6c67928fed0d96, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388876968048371434, guid: d047cbe70217f9048a6c67928fed0d96, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 2388876968048371436, guid: d047cbe70217f9048a6c67928fed0d96, type: 3}
       propertyPath: m_Pivot.x
@@ -2310,6 +2285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1976275065, guid: 67e7b1d01c6a81b40bc3041299e01edc, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4232681487
+      objectReference: {fileID: 0}
     - target: {fileID: 5945309010388685200, guid: 67e7b1d01c6a81b40bc3041299e01edc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2355,10 +2334,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5945309010388685201, guid: 67e7b1d01c6a81b40bc3041299e01edc, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5945309010388685201, guid: 67e7b1d01c6a81b40bc3041299e01edc, type: 3}
       propertyPath: playerManager
       value: 
       objectReference: {fileID: 358222797}
@@ -2370,10 +2345,6 @@ PrefabInstance:
       propertyPath: playerInGameText
       value: 
       objectReference: {fileID: 1579790718}
-    - target: {fileID: 5945309010388685201, guid: 67e7b1d01c6a81b40bc3041299e01edc, type: 3}
-      propertyPath: playerTargetText
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5945309010388685201, guid: 67e7b1d01c6a81b40bc3041299e01edc, type: 3}
       propertyPath: startClientButton
       value: 
@@ -2395,6 +2366,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 358222798, guid: a0a1a1871231d4a4c80e91bce45b6c96, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1843361111
+      objectReference: {fileID: 0}
     - target: {fileID: 6713663682725003048, guid: a0a1a1871231d4a4c80e91bce45b6c96, type: 3}
       propertyPath: m_Name
       value: PlayersManager

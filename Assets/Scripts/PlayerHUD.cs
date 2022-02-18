@@ -92,7 +92,7 @@ public class PlayerHUD : NetworkBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(!overlaySet && !string.IsNullOrEmpty(playerName.Value))
         {

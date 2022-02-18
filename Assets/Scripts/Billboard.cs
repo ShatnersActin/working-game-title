@@ -6,7 +6,7 @@ public class Billboard : MonoBehaviour
 {
     public Camera m_Camera;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         m_Camera = Camera.main;
 
