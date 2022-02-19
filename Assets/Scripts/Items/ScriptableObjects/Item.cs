@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class Item : ScriptableObject
+public abstract class Item : ScriptableObject
 {
     public int id;
     new public string name = "Default Item";
-    public Sprite icon;       
-    
+    public Sprite icon;
+    public Sprite rarityColor;
+
     public virtual void UseItem()
     {
         Debug.Log("Using " + name);
@@ -22,6 +22,9 @@ public class Item : ScriptableObject
     {
         
     }
+
+    public abstract string GetToolTipInfoText();
+    public abstract string ColoredName { get; }
 }
 
 
