@@ -18,6 +18,7 @@ MonoBehaviour:
   equipSlot: 1
   itemRarity: 1
   stats: 0
+  rarityColor: {fileID: 21300000, guid: 88efbacfa4347654c94cb2dedff6fa43, type: 3}
   bonusStr: 0
   bonusDex: 0
   bonusCon: 0

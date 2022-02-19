@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Equipment", menuName = "Equipment")]
@@ -101,8 +102,67 @@ public class Equipment : Item
         }
     }
 
+    public override string GetToolTipInfoText()
+    {
+        StringBuilder builder = new StringBuilder();
+
+        builder.Append(itemRarity).AppendLine();
+        if(bonusStr != 0)
+        {
+            builder.Append("Bonus Strength: ").Append(bonusStr).AppendLine();
+        }
+        if (bonusDex != 0)
+        {
+            builder.Append("Bonus Dexterity: ").Append(bonusDex).AppendLine();
+        }
+        if (bonusCon != 0)
+        {
+            builder.Append("Bonus Constitution: ").Append(bonusCon).AppendLine();
+        }
+        if (bonusInt != 0)
+        {
+            builder.Append("Bonus Intelligence: ").Append(bonusInt).AppendLine();
+        }
 
 
+        return builder.ToString();
+    }
+
+    public override string ColoredName
+    {
+        get
+        {
+            int rarityIndex = (int)itemRarity;
+            Color textColor;
+            string hexColor;
+
+            if (rarityIndex == 0)
+            {
+                textColor = Color.white;                                //white
+                hexColor = ColorUtility.ToHtmlStringRGB(textColor);
+                return $"<color=#{hexColor}>{name}</color>";
+            }
+            if (rarityIndex == 1)
+            {
+                textColor = Color.green;                                //green
+                hexColor = ColorUtility.ToHtmlStringRGB(textColor);
+                return $"<color=#{hexColor}>{name}</color>";
+            }
+            if (rarityIndex == 2)
+            {
+                textColor = Color.blue;                                 //blue
+                hexColor = ColorUtility.ToHtmlStringRGB(textColor);
+                return $"<color=#{hexColor}>{name}</color>";
+            }
+            if (rarityIndex == 3)
+            {
+                textColor = Color.HSVToRGB(290f, 100f, 100f);           //purple
+                hexColor = ColorUtility.ToHtmlStringRGB(textColor);
+                return $"<color=#{hexColor}>{name}</color>";
+            }
+            return null;
+        }
+    }
 
     public enum EquipmentSlot
     {
